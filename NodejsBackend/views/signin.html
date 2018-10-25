@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?159"></script>
+    <link rel="stylesheet" href="./css/index_style.css">
+</head>
+
+<body>
+    <form id="msform" method="POST">
+        <fieldset>
+            <h2 class="fs-title">Sign in</h2>
+            <input type="text" id="login" name="login" placeholder="Your login" />
+            <input type="password" id="password" name="password" placeholder="Password" />
+            <input type="submit" name="Sign in" id="signin" class="next action-button" value="Sign in" />
+            <input type="button" onclick="window.location.href='/'" value="Sign up">
+            <div id="vk_auth"></div>
+        </fieldset>
+    </form>
+</body>
+<script type="text/javascript">
+window.onload = function() {
+    VK.init({ apiId: 6726468 });
+    VK.Widgets.Auth('vk_auth', { "authUrl": "/signin" });
+}
+</script>
+<script src="./scripts/jquery.js"> </script>
+<script src="./scripts/signin.js"></script>
+<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+
+</html>

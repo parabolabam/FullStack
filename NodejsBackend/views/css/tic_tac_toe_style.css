@@ -1,0 +1,325 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    height: 100%;
+    /*Image only BG fallback*/
+
+    /*background = gradient + image pattern combo*/
+    background:
+        linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+    background-attachment: fixed;
+}
+
+body {
+    font-family: montserrat, arial, verdana;
+    overflow: hidden;
+
+}
+
+
+
+.XOrO {
+    background: none;
+    display: table-cell;
+    width: 250px;
+    height: 250px;
+    transition: all 0.4s ease-in-out;
+    z-index: 500
+}
+
+#XOrO {
+    margin: 2em 2em 2em 2em;
+    display: table-row;
+    width: 200px;
+    height: 200px;
+}
+
+.XOrO:hover {
+    background: #fff;
+    z-index: 9999;
+    width: 250px;
+    height: 250px;
+    transform: translateX(0.5em) translateY(0.5em);
+    transition: all 0.4s ease-in-out
+}
+
+.size {
+
+    width: 25px;
+    height: 25px;
+    transition: all 0.4s ease-out
+}
+
+#container {
+    display: block;
+    position: relative;
+    margin: 5em 5em auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 700px;
+    height: 700px;
+}
+
+.size {
+    vertical-align: middle;
+    align-items: center;
+    text-align: center;
+
+
+    display: table-cell;
+    width: 200px;
+    height: 200px;
+
+
+}
+
+.Row {
+    /*display: table-row;*/
+}
+
+
+#_00 {
+
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+
+}
+
+#_01 {
+
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+
+}
+
+#_02 {
+    border-bottom: 1px solid black;
+
+}
+
+#_10 {
+
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+
+
+}
+
+#_11 {
+    border-bottom: 1px solid black
+}
+
+#_12 {
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+
+}
+
+#_20 {}
+
+#_21 {
+
+    border-left: 1px solid black;
+
+}
+
+#_22 {
+    border-left: 1px solid black;
+}
+
+#XOrO {
+    display: inline-block;
+    width: 4%;
+    position: relative;
+    margin: 0 auto 15px
+}
+
+#X,
+.X:hover {
+
+    font: italic bold 5em Georgia, serif;
+}
+
+#O,
+.O {
+    font: italic bold 5em Georgia, serif;
+
+}
+
+.background {
+    width: 100px;
+    height: 50px;
+    padding: 0;
+    margin: 0
+}
+
+.line1 {
+    width: 112px;
+    height: 47px;
+    border-bottom: 1px solid black;
+    -webkit-transform:
+        translateY(-30px) translateX(3em) rotate(45deg);
+    position: absolute;
+    margin: 1em 1em;
+    /* top: -20px; */
+}
+
+.line2 {
+    width: 112px;
+    height: 47px;
+    border-bottom: 1px solid black;
+    -webkit-transform:
+        translateY(5em) translateX(1em) rotate(-45deg);
+    position: absolute;
+    margin: -6em 1em;
+}
+
+
+
+.zero {
+
+
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+
+    border-radius: 100%
+}
+
+
+/*SElECT MENU*/
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+}
+
+/* Custom Select */
+.select {
+    position: relative;
+    display: block;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+}
+
+select {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0 .5em;
+    color: #fff;
+    cursor: pointer;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+/* Arrow */
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 1em;
+    background: #34495e;
+    pointer-events: none;
+}
+
+/* Transition */
+.select:hover::after {
+    color: #f39c12;
+}
+
+.select::after {
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}
+
+/* for table */
+/*table {
+    border-collapse: collapse;
+
+}
+
+tr,
+td {
+    width: 25px;
+    height: 25px;
+}
+
+.allBoards {
+
+    border: 1.45px solid black;
+
+
+}
+
+
+#withnoborderright {
+
+    border-right: none;
+
+
+}
+
+.extremelyRight {
+
+    border-bottom: 1.45px solid black;
+
+}
+
+#withnobottomAndRight {
+    border-right: 1.45px solid black
+}
+
+.withnobordertop {
+    border-bottom: 1.45px solid black;
+    border-right: 1.45px solid black;
+}
+
+.withNoLeftBorder {
+
+    border-bottom: 1.45px solid black;
+    border-top: 1.45px solid black;
+    border-right: 1.45px solid black;
+}
+
+
+#withNoBottom {
+    border-right: 1.45px solid black
+}
+
+*/
+
+
+/*for div*/
