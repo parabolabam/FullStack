@@ -1,0 +1,398 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
+html {
+    height: 100%;
+    background: var(--bgcol);
+    color: #FFF;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    --bgcol: #1A2A3A;
+    position: relative;
+    box-sizing: border-box;
+}
+
+$white: #fff;
+$pink: #ffbeff;
+$gray: #dbdbdb;
+$darkgray: #c3c7cb;
+$eyes: #000449;
+$shadow: #000031;
+$bg: #00034b;
+
+@mixin pseudo ($content: '') {
+    position: absolute;
+    content: $content;
+}
+
+* {
+    box-sizing: border-box;
+
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    min-height: 100vh;
+    background: $bg;
+}
+
+#container {
+    width: 10rem;
+    height: 16rem;
+}
+
+.ghost {
+    position: relative;
+
+    .body {
+        width: 10rem;
+        height: 15.5rem;
+        background: $white;
+        border-radius: 5rem 5rem 1rem 1rem;
+        box-shadow: inset -1.25rem 0.025rem 0 $gray;
+        animation: ghostFloat 2s linear infinite;
+
+        .face {
+            position: absolute;
+            top: 4.625rem;
+            left: 3rem;
+
+            .eyes {
+                width: 1.063rem;
+                height: 1.438rem;
+                background: $eyes;
+                border-radius: 50%;
+                animation: eyesBlink 2s linear infinite;
+
+                &::before {
+                    @include pseudo;
+                    width: inherit;
+                    height: inherit;
+                    left: 2.95rem;
+                    background: inherit;
+                    border-radius: inherit;
+                }
+            }
+
+            .blush {
+                position: absolute;
+                top: 1.95rem;
+                right: 0.8rem;
+                width: 1.125rem;
+                height: 1.1325rem;
+                background: $pink;
+                border-radius: 50%;
+
+                &::before {
+                    @include pseudo;
+                    left: 4.625rem;
+                    width: inherit;
+                    height: inherit;
+                    background: inherit;
+                    border-radius: inherit;
+                }
+            }
+        }
+
+        .line {
+            position: relative;
+            z-index: 3;
+            top: 14rem;
+            width: 8.75rem;
+            height: 1.25rem;
+            background: $white;
+        }
+
+        .bottom {
+            position: absolute;
+            top: 14.25rem;
+
+            .circle {
+                position: absolute;
+                z-index: 2;
+                width: 1.75rem;
+                height: 1.75rem;
+                background: $white;
+                border-radius: 0 0 1rem 1rem;
+
+                &:nth-child(1) {
+                    left: 0;
+                }
+
+                &:nth-child(2) {
+                    left: 2.75rem;
+                    border-radius: 1rem;
+                }
+
+                &:nth-child(3) {
+                    left: 5.5rem;
+                    border-radius: 1rem;
+                }
+
+                &:nth-child(4) {
+                    left: 8.25rem;
+                    box-shadow: inset -1.25rem 0.025rem 0 $gray;
+                }
+            }
+
+            .wave {
+                position: relative;
+                z-index: 1;
+                left: 1.425rem;
+                width: 1.625rem;
+                height: 1.75rem;
+                background: $darkgray;
+                border-radius: 1rem;
+                box-shadow: inset 0rem 1rem 0 $white;
+
+                &::before {
+                    @include pseudo;
+                    left: 2.75rem;
+                    width: inherit;
+                    height: inherit;
+                    background: inherit;
+                    border-radius: inherit;
+                    box-shadow: inherit;
+                }
+
+                &::after {
+                    @include pseudo;
+                    left: 5.5rem;
+                    width: inherit;
+                    height: inherit;
+                    background: inherit;
+                    border-radius: inherit;
+                    box-shadow: inherit;
+                }
+            }
+        }
+    }
+
+    .shadow {
+        position: absolute;
+        z-index: -2;
+        top: 18.25rem;
+        width: 10rem;
+        height: 1rem;
+        background: $shadow;
+        border-radius: 50%;
+        filter: blur(0.05rem);
+        animation: shadowWidth 2s linear infinite;
+    }
+
+    .glow {
+        position: absolute;
+        z-index: -1;
+        top: -0.625rem;
+        left: -0.5rem;
+        width: 11rem;
+        height: 17rem;
+        background: radial-gradient(circle at 50% 50%, $white, $white 40%, $white 50%);
+        border-radius: 5rem 5rem 1rem 1rem;
+        opacity: 0.3625;
+        filter: blur(1.125rem);
+        animation: ghostFloat 2s linear infinite, glowBlur 2s linear infinite;
+    }
+}
+
+@supports (display: grid) {
+    body {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 0.625rem;
+        grid-template-areas: ". main main ."". main main .";
+    }
+
+    #container {
+        grid-area: main;
+        align-self: center;
+        justify-self: center;
+    }
+}
+
+@keyframes ghostFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-1rem);
+    }
+}
+
+@keyframes eyesBlink {
+
+    0%,
+    30%,
+    38%,
+    100% {
+        transform: translateY(0);
+        height: 1.438rem;
+    }
+
+    34%,
+    36% {
+        transform: translateY(0.625rem);
+        height: 0;
+    }
+}
+
+@keyframes shadowWidth {
+
+    0%,
+    100% {
+        width: 10rem;
+    }
+
+    50% {
+        width: 8rem;
+        transform: translateX(1rem);
+    }
+}
+
+@keyframes glowBlur {
+
+    0%,
+    50%,
+    100% {
+        opacity: 0.3625;
+        filter: blur(1.125rem);
+    }
+
+    25%,
+    75% {
+        opacity: 0.25;
+        filter: blur(0.85rem);
+    }
+}
+
+
+
+
+/*svg {
+    stroke: yellow;
+    fill: none;
+    stroke-width: 0px;
+    overflow: visible;
+    stroke-linecap: round;
+    stroke-dasharray: 320;
+    //outline: 3px solid green;
+}
+
+@media (orientation: landscape) {
+    svg {
+        width: 10vw;
+    }
+}
+
+@media (orientation: portrait) {
+    svg {
+        height: 10vh;
+    }
+}
+
+.group {
+    animation: rot 30s steps(10) infinite;
+    transform-origin: 50% 50%;
+}
+
+path {
+    animation: fillit 6s infinite ease-in;
+}
+
+.p1 {
+    stroke-dasharray: 100;
+}
+
+.p3 {
+    stroke-dasharray: 150;
+}
+
+.p7,
+.p8 {
+    stroke-dasharray: 550;
+}
+
+@keyframes fillit {
+    0% {
+        stroke-dashoffset: 320;
+        stroke-width: 0;
+        stroke: yellow;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+        stroke-width: 11;
+        stroke: yellow;
+    }
+
+    50.01% {
+        stroke-dashoffset: 320;
+        stroke-width: 0;
+        stroke: var(--bgcol);
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        stroke-width: 11;
+        stroke: var(--bgcol);
+    }
+}
+
+circle.big {
+    fill: red;
+    animation: col 6s linear infinite;
+}
+
+@keyframes col {
+    0% {
+        fill: var(--bgcol);
+    }
+
+    50% {
+        fill: var(--bgcol);
+    }
+
+    50.01% {
+        fill: yellow;
+    }
+
+    100% {
+        fill: yellow;
+    }
+}
+
+@keyframes rot {
+    /*to {
+    transform: rotate(1350deg);
+}*/
+}
+
+/*.dwf {
+    position: fixed;
+    bottom: 4px;
+    right: 10px;
+    background-color: #0003;
+    padding: 3px;
+    border-radius: 3px;
+}*/

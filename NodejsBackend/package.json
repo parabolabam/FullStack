@@ -1,0 +1,53 @@
+{
+  "name": "tomatoprod",
+  "version": "1.0.0",
+  "description": "README.md",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parabolabam/koa2AppThumTack.git"
+  },
+  "author": "Sorokin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/parabolabam/koa2AppThumTack/issues"
+  },
+  "homepage": "https://github.com/parabolabam/koa2AppThumTack#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "cookies": "^0.7.2",
+    "grunt": "1.0.3",
+    "grunt-cli": "1.3.1",
+    "grunt-contrib-uglify": "4.0.0",
+    "js-md5": "^0.7.3",
+    "jsonwebtoken": "^8.3.0",
+    "koa": "^2.5.2",
+    "koa-body-parser": "^1.1.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-ejs": "^4.1.2",
+    "koa-logger": "^3.2.0",
+    "koa-morgan": "^1.0.1",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.9.0",
+    "koa-session-minimal": "^3.0.4",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.1.4",
+    "koa-views-render": "0.0.1",
+    "koa2": "^2.0.0-alpha.7",
+    "koa2-session-store": "^1.0.3",
+    "koa2-static": "^1.0.1",
+    "mongodb": "^3.1.6",
+    "mongoose": "^5.2.14",
+    "netlify-cli": "^2.1.2",
+    "nodemailer": "^4.6.8",
+    "nodemon": "^1.18.4",
+    "nunjucks": "^3.1.3",
+    "uglify-es": "3.3.9"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}

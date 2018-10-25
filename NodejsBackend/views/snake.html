@@ -1,0 +1,40 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Snake.js</title>
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i|Pangolin" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.min.css">
+
+</head>
+
+<body style="overflow: hidden;" id="bod">
+  <button onclick="window.location.href='/home'">Get aback</button>
+  <div class="container">
+    <canvas width="600" height="600"></canvas>
+    <div class="rulebook-container">
+      <h1>{{user_name}}, look at the Snake.js rules:</h1>
+      <div>
+        <ol>
+          <li>Increase your score by eating food (red blocks)</li>
+          <li>Move your snake using arrows</li>
+          <li>You can move through edges</li>
+          <li>Play only on desktop. Mobile devicess not supported</li>
+          <li>You can give me a feedback at <a href="mailto:sorokinvladislav1402@gmail.com">sorokinvladislav1402@gmail.com</a></li>
+        </ol>
+        <h2>Your score:</h2>
+        <span class="score-box" id="scoreBox">0</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>Version: 1.1 created by <a href="http://dszczepaniak.pl">Dominik Szczepaniak</a>. Contact creator: <a href="mailto:admin@dszczepaniak.pl">admin@dszczepaniak.pl</a></footer>
+  <script src="scripts/main.js"></script>
+</body>
+<script type="text/javascript" src="http://localhost:35729/livereload.js">
+
+</script>
+
+</html>

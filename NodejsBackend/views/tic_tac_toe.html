@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/tic_tac_toe_style.css">
+</head>
+<h1>Welcome to tic-tac-toe game, {{login}}!</h1>
+<h2 id = "toInsertAfter">What you wan to play for?</h2>
+<div class="select" id="select">
+    <select name="slct" id="slct">
+        <option>Choose a side</option>
+        <option value="X">X</option>
+        <option value="O">O</option>
+    </select>
+</div>
+<div id="container">
+    <div class="Row">
+        <div class="size" id="_00"></div>
+        <div class="size" id="_01"></div>
+        <div class="size" id="_02"></div>
+    </div>
+    <div class="Row">
+        <div class="size" id="_10"></div>
+        <div class="size" id="_11"></div>
+        <div class="size" id="_12"></div>
+    </div>
+    <div class="Row">
+        <div class="size" id="_20"></div>
+        <div class="size" id="_21"></div>
+        <div class="size" id="_22"></div>
+    </div>
+    </table>
+</div>
+
+<body>
+    <script>
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
+</body>
+<script src="./scripts/tic-tac-toe.js"></script>
+
+</html>
