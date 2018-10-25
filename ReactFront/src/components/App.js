@@ -1,6 +1,10 @@
-import React, {PureComponent} from "react";
+import React, { PureComponent } from "react";
 import ArticleList from "./ArticleList/index.js";
 import "bootstrap/dist/css/bootstrap.css";
+import "./css/style.css";
+import Carousel from './Carousel.js';
+
+import './css/style.css';
 import articles from "./Articles.js";
 
 class App extends PureComponent {
@@ -12,21 +16,25 @@ class App extends PureComponent {
         this.revert = revert.bind(this);
     }
 
+
     render() {
         return (
-            <div className="container">
-                <div className="jumbotron">
-                    <h1 className="display3">
-                        Tomato
-                        <button className="btn" onClick={this.revert}>
-                            Revert
-                        </button>
-                    </h1>
+            <div className="mx-auto container">
+                <div className="mx-auto jumbotron header">
+                    <div className="mx-auto">
+                        <h1 className=" mx-auto display3">
+                            Welcome to Tomato!
+                        </h1>
+                    </div>
+                    <button className="btn btn-primary btn-lg float-right btnClass" onClick={this.revert}>
+                        MakeLastArticleBeTheFirstArticle magic
+                    </button>
                 </div>
-                <ArticleList
-                    articles={this.state.reverted ? articles.slice().reverse() : articles}
-                />
-            </div>
+                <div>
+                    <Carousel/>
+                </div>
+                <div className="articles-list"><ArticleList articles={this.state.reverted ? articles.slice().reverse() : articles}/></div></div>
+
         );
     }
 }

@@ -16,19 +16,18 @@ export default class ArticlesList extends PureComponent {
     }
 
 
-
     render() {
-        const articlesElements = this.props.articles.map((article, index) =>
+        const articlesElements = this.props.articles.map((article) =>
             <li key={article.id} className="article-list">
          <Article article={article} 
          isOpen={this.state.openArticleId === article.id}
          onButtonClick = {this.handleClick.bind(this, article.id)} />
-         </li>)
+         </li>);
 
         return (
             <ul>
-			{articlesElements}
-		</ul>
+            {articlesElements}
+        </ul>
 
         )
     }
