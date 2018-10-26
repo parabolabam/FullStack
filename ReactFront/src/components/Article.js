@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 
 
@@ -14,11 +14,11 @@ class Article extends PureComponent {
 
     render() {
         console.log('----', 2);
-        const {article, isOpen, onButtonClick} = this.props;
+        const { article, isOpen, onButtonClick } = this.props;
         const body = isOpen && <section className="card-text">{article.text}</section>;
 
         let router = (
-                <div className="card mx-auto" style={{width: '50%'}}>
+            <div className="card mx-auto" style={{width: '50%'}}>
                     <div className="card-header">
                         <h2>{article.title}&emsp;
                             viewed {this.state.count}
@@ -47,9 +47,10 @@ class Article extends PureComponent {
 }
 
 
-function incrementCounter() {
+var incrementCounter = function() {
+    console.log("I am here");
     this.setState({
-        count: !this.props.isOpen ? this.state.count + 1 : this.state.count,
+        count: this.state.count + 1,
     })
 
 }

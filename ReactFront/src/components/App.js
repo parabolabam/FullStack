@@ -20,15 +20,19 @@ class App extends PureComponent {
     render() {
         return (
             <div className="mx-auto container">
-                <div className="mx-auto jumbotron header">
-                    <div className="mx-auto">
-                        <h1 className=" mx-auto display3">
-                            Welcome to Tomato!
+                <div className="header mx-auto jumbotron header">
+                   <div id ="nameBtnID">
+                       <div>
+                           <h1 className="mx-auto display3">
+                                <div>Welcome to Tomato!</div>
                         </h1>
+                       </div>
+                        <div>
+                            <button className="btn btn-primary btn-lg btnClass" onClick={this.revert}>
+                            Sort magic
+                        </button>
+                        </div>
                     </div>
-                    <button className="btn btn-primary btn-lg float-right btnClass" onClick={this.revert}>
-                        MakeLastArticleBeTheFirstArticle magic
-                    </button>
                 </div>
                 <div>
                     <Carousel/>
