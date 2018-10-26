@@ -180,7 +180,33 @@
     color: #000
 }
 
-/*# sourceMappingURL=slick-theme.min.css.map */
+/*# sourceMappingURL=slick-theme.min.css.map 
+
+/*#sortMagic {
+
+    position: relative;
+    margin: 5em 0 0 1em
+}
+
+#AppName {
+    position: absolute;
+
+    font-size: 50px;
+    margin: 0 0 0 0
+        /*margin: 0 20px 0 1.5em
+}
+
+
+#welcomeToTomato {
+    margin: 0.4em;
+    position: relative;
+}
+
+#nameBtnID {
+    top: 0.5em;
+    margin: 0 5em 0 5em;
+    position: absolute;
+}
 
 .header {
     width: 100%;
@@ -205,6 +231,14 @@
 
 }
 
+
+.articles-list {
+
+    margin-top: 50px;
+
+}*/
+
+
 .carousel {
     /*margin: auto;*/
     height: 10em;
@@ -215,12 +249,6 @@
 .carousel-items-container {
 
     display: inline-block;
-
-}
-
-.articles-list {
-
-    margin-top: 50px;
 
 }
 
@@ -236,30 +264,4 @@
     z-index: 999999999;
 
 
-}
-
-#sortMagic {
-
-    position: relative;
-    margin: 5em 0 0 1em
-}
-
-#AppName {
-    position: absolute;
-
-    font-size: 50px;
-    margin: 0 0 0 0
-    /*margin: 0 20px 0 1.5em*/
-}
-
-
-#welcomeToTomato {
-    margin: 0.4em;
-    position: relative;
-}
-
-#nameBtnID{
-    top: 0.5em;
-    margin: 0 5em 0 5em; 
-    position: absolute;
 }

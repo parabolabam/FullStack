@@ -1,0 +1,62 @@
+#sortMagic {
+
+    position: relative;
+    margin: 5em 0 0 1em
+}
+
+#AppName {
+    position: absolute;
+
+    font-size: 50px;
+    margin: 0 0 0 0
+        /*margin: 0 20px 0 1.5em*/
+}
+
+
+#welcomeToTomato {
+    margin: 0.4em;
+    position: relative;
+}
+
+#nameBtnID {
+    top: 0.5em;
+    margin: 0 5em 0 5em;
+    position: absolute;
+}
+
+.header {
+    width: 100%;
+    height: 1em;
+    position: relative;
+    background-color: rgb(100, 100, 100);
+    color: rgb(155, 250, 155);
+}
+
+.btnClass {
+    position: relative;
+    border-color: rgb(25, 50, 25);
+    background-color: #fff;
+    color: rgb(25, 50, 25);
+    margin: 0 auto;
+}
+
+.btnClass:hover {
+
+    cursor: pointer;
+    transition: ease 0.2s;
+
+}
+
+
+.articles-list {
+
+    margin-top: 50px;
+
+}
+
+#LogoutMagicContainer {
+
+    width: 15em;
+    display: inline-block;
+
+}

@@ -1,5 +1,7 @@
+'use strict'
+
 import React, { PureComponent } from 'react'
-import Article from '../Article.js'
+import Article from '../Article/Article.jsx'
 import './style.css'
 
 

@@ -1,4 +1,4 @@
-import Article from './RandomArticleGenerator.js';
+import Article from '../RandomArticleGenerator.js';
 
 function getText() {
 
@@ -9,7 +9,7 @@ function getText() {
 
 let articles = [];
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 20; i++) {
     let article = new Article(
         i,
         getText(),
