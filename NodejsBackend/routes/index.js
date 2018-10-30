@@ -1,38 +1,38 @@
-const router = (require('koa-router'))()
-const parser = require('koa-bodyparser')
-const views = require('koa-views')
-const db = require("../models/user_model.js")
-const validate = require('./validation/validate.js')
-const bcrypt = require('bcrypt-nodejs')
-const jwt = require('jsonwebtoken')
-const mail = require('./mail.js')
-const config = require('../CONFIG.js')
-const md5 = require('js-md5')
+'use strict'
+
+const router = (require('koa-router'))();
+const parser = require('koa-bodyparser');
+const views = require('koa-views');
+const db = require("../models/user_model.js");
+const jwt = require('jsonwebtoken');
+const mail = require('./mail.js');
+const config = require('../CONFIG.js');
+const md5 = require('js-md5');
+
+const hashRegExp = new RegExp(/hash=(.+)/g);
+const uidREgExp = new RegExp(/uid=(\d+)/g);
+
 
 router.use(parser())
-router.use(views('./views', {
-    map: {
-        html: 'nunjucks'
-    }
-}))
-router.get('/', async (ctx, next) => {
-    ctx.session = null;
-    await ctx.render('index')
+// router.use(views('./views', {
+//     map: {
+//         html: 'nunjucks'
+//     }
+// }))
 
-});
 router.post('/', async (ctx, next) => {
 
     if (ctx.request.body.password === ctx.request.body.confirm) {
-        let user = {
+        const user = {
             login: ctx.request.body.login,
             email: ctx.request.body.email,
             password: ctx.request.body.password,
             confirm: ctx.request.body.confirm,
         }
-        var token = jwt.sign(user.email, "SEcretKeyNoOneWillNeverRealizeHoWTo+&*Generate#$@(#8@())")
+        const token = jwt.sign(user.email, "SEcretKeyNoOneWillNeverRealizeHoWTo+&*Generate#$@(#8@())")
 
         user.token = token
-        mail.send(user.email, "Follow the link below to confirm your Email address => " + `http://localhost:3000/auth/${user.token}`);
+        mail.send(user.email, "Follow the link below to confirm your Email address => " + `http://localhost/auth/${user.token}`);
         await ctx.redirect("/signin")
         ctx.session.user = await user;
         await db.addUser(user)
@@ -40,11 +40,13 @@ router.post('/', async (ctx, next) => {
     } else ctx.redirect("/error")
 })
 
+router.get('/logout', async (ctx, next) => {
+    console.log("\nGOT ID\n");
+    ctx.session = null;
+    await ctx.redirect('/signin');
 
-router.get("/tic-tac-toe", async (ctx, next) => {
-    await ctx.render("tic_tac_toe")
+
 })
-
 
 router.get('/auth/:token', async (ctx, next) => {
 
@@ -56,17 +58,12 @@ router.get('/auth/:token', async (ctx, next) => {
         console.log("succsess => ", result)
         ifSuccess = true
     })
-    if (ifSuccess) ctx.redirect('/signin')
-})
-
-router.get('/signin', async (ctx, next) => {
-    ctx.session = null;
-    await ctx.render('signin');
+    // if (ifSuccess) ctx.redirect('/signin')
 })
 
 
 router.post('/signin', async (ctx, next) => {
-
+    console.log("Received");
     let login = ctx.request.body.login;
     let password = ctx.request.body.password;
 
@@ -88,32 +85,34 @@ router.post('/signin', async (ctx, next) => {
 
 
     if (check_hashes) {
-        await ctx.redirect("/home");
+        // await ctx.redirect("/home");
         ctx.session.user = await user;
-        console.log(`Session created on user ${user.login}`)
+        console.log(`Session created on user ${user.login}`);
+        ctx.redirect("/home");
     } else {
-        await ctx.resirect("/error")
+        await ctx.redirect("/error")
     }
 });
-
-router.get('/snake', async (ctx, next) => {
-    await ctx.render('snake')
-});
-
+router.post('/home', async (ctx, next) => {
+    console.log("GOT IT");
+    console.log(`session of user ${ctx.session.user.login} destroyed!`);
+    ctx.session = await null;
+    await ctx.redirect('/signin');
+})
 router.get('/home', async (ctx, next) => {
     try {
-        var hashRegExp = new RegExp(/hash=(.+)/g);
-        var uidREgExp = new RegExp(/uid=(\d+)/g)
 
-        var url = ctx.request.url;
 
-        var urlHash = (hashRegExp.exec(url))[1]
-        var urlUid = (uidREgExp.exec(url))[1]
+        const url = ctx.request.url;
 
-        var secret_key = config.secret_key;
-        var app_id = config.app_id;
+        const urlHash = (hashRegExp.exec(url))[1]
+        const urlUid = (uidREgExp.exec(url))[1]
 
-        var checkHash = md5(app_id + urlUid + secret_key);
+        const secret_key = config.secret_key;
+        const app_id = config.app_id;
+
+        const checkHash = md5(app_id + urlUid + secret_key);
+
         if (checkHash === urlHash) {
             await ctx.render('home');
             return;
