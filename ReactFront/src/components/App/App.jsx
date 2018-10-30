@@ -5,7 +5,6 @@ import "./css/style.css";
 import Carousel from '../Carousel/Carousel.jsx';
 import articles from "../Articles/Articles.jsx";
 import Logoutbtn from '../LogoutBtn/LogoutBtn.jsx';
-import Button from '../Button/Button.jsx';
 
 
 class App extends PureComponent {
@@ -21,12 +20,7 @@ class App extends PureComponent {
 
 
     render() {
-        function revert() {
-            console.log("Called revert()");
-            this.setState({
-                reverted: !this.state.reverted
-            });
-        }
+        
         return (
             <div className="mx-auto container">
                 <div className="header mx-auto jumbotron header">
@@ -45,7 +39,7 @@ class App extends PureComponent {
                     <Carousel/>
                 </div>
                 <div className="articles-list">
-                <ArticleList articles={this.state.reverted ? articles.slice().reverse() : articles}/>
+                <ArticleList articles={articles.slice()}/>
                 </div>
                 </div>
 
