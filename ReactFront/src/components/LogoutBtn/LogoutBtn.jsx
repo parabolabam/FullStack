@@ -6,9 +6,9 @@ export default class LogoutBtn extends Component {
 
 
     render() {
-        const logOut = () => {
-            window.location.href = '/logout';
-        }
+        // const logOut = () => {
+        //     window.location.href = '/logout';
+        // }
         return (
 
             <form method="POST">

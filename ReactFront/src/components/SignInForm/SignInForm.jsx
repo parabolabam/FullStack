@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ForgotPassword from '../ForgotPassword';
 import "./css/style.css";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -26,6 +27,7 @@ export default class SignInForm extends Component {
             <input type="text" id="login" name="login" placeholder="Your login" />
             <input type="password" id="password" name="password" placeholder="Password" />
             <input type="submit" name="next" className="next action-button" value="Next" />
+            <ForgotPassword clicked={false}/>
         </fieldset>
     </form>
                         </div>

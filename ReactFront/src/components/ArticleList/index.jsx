@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react'
-import Article from '../Article/Article.jsx'
-import './style.css'
+import React, { PureComponent } from 'react';
+import Article from '../Article/Article.jsx';
+import './css/style.css';
 
 
 export default class ArticlesList extends PureComponent {
