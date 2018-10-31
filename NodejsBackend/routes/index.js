@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const mail = require('./mail.js');
 const config = require('../CONFIG.js');
 const md5 = require('js-md5');
+const bcrypt = require('bcrypt-nodejs')
 
 const hashRegExp = new RegExp(/hash=(.+)/g);
 const uidREgExp = new RegExp(/uid=(\d+)/g);
@@ -62,10 +63,62 @@ router.get('/auth/:token', async (ctx, next) => {
 })
 
 
+router.post('/set_new_password/:token', async (ctx, next) => {
+
+    const password = ctx.request.body.password;
+    const confirm = ctx.request.body.confirm;
+    const token = ctx.originalUrl.split('/')[2]
+    if (password === confirm) {
+        console.log(token);
+        bcrypt.genSalt(10, (error, salt) => {
+            bcrypt.hash(password, salt, null, (err, result) => {
+                if (err) {
+                    console.log("While encrypting ", err);
+                }
+                console.log("result ===>>>", result);
+                db.resetPassByTokenDoubleProtection(token, result).then((data) => {
+                    console.log("DB process finished with data " + data);
+                }).catch((err) => {
+                    console.log(err)
+                });
+            });
+        });
+    }
+
+
+})
+
+
+router.get('/reset/:token', async (ctx, next) => {
+
+    let token_url = ctx.originalUrl;
+    let token = token_url.split('/')[2]; // parsed token_url
+    var ifSuccess = false;
+    await db.resetPassByToken(token).then(async (user_login) => {
+        await ctx.redirect('/set_new_password/' + token);
+    })
+    // if (ifSuccess) ctx.redirect('/signin')
+})
+
+
+router.post('/resetpassword', async (ctx, next) => {
+    mail.send(email, "Follow the link below to reset your password => " +
+        `http://localhost/reset/${token}`);
+})
+
+
 router.post('/signin', async (ctx, next) => {
     console.log("Received");
+
+
     let login = ctx.request.body.login;
     let password = ctx.request.body.password;
+    const resetPassword = ctx.request.body.resetPassword;
+
+    if (resetPassword) {
+        console.log("IHIHHI");
+        return;
+    }
 
     if (!login) {
         return
@@ -124,13 +177,4 @@ router.get('/home', async (ctx, next) => {
 
 });
 
-router.get('/error', async (ctx, next) => {
-    await ctx.render('error')
-});
-
-
-
-
-module.exports = {
-    router: router
-}
+module.exports = router

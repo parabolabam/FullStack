@@ -13,13 +13,13 @@ const app = new Koa_2();
 app.use(session(CONFIG, app));
 // app.use((require('koa-static'))("./views/.", {}));
 
-app.use(router.router.routes()).use(router.router.allowedMethods())
-app.use(logger())
-app.use(parser())
+app.use(router.routes()).use(router.allowedMethods());
+app.use(logger());
+app.use(parser());
 app.on('error', async err => {
     await console.log(err)
-})
-module.exports = app
-app.listen(process.env.PORT || 3001, ()=>{
-	console.log(`App listens on localhost:${process.env.PORT || 3001}`);
-})
+});
+module.exports = app;
+app.listen(process.env.PORT || 3001, () => {
+    console.log(`App listens on localhost:${process.env.PORT || 3001}`);
+});

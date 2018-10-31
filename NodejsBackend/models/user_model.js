@@ -1,6 +1,6 @@
 var mongoose = require("../DBCommunicate/DBConnect.js")
 const bcrypt = require('bcrypt-nodejs')
-
+//There are duplicates - think how to fix it
 var userSchema = new mongoose.Schema({
     id: { type: Number },
     login: { type: String },
@@ -43,7 +43,7 @@ module.exports = {
         })
     },
 
-    getUserByToken: function(token_, email) {
+    getUserByToken: function(token_) {
         return new Promise((resolve, reject) => {
             var query = User.findOne({
                 token: token_
@@ -55,6 +55,70 @@ module.exports = {
                     console.log('data changed in db!')
                 })
                 resolve(success)
+            }).catch((fail) => {
+                console.log(fail)
+                reject(fail)
+            })
+        })
+    },
+    resetPassByToken: function(token_) {
+        return new Promise((resolve, reject) => {
+            var query = User.findOne({
+                token: token_
+            });
+            query.select('token email login password');
+            query.exec().then((user) => {
+                if (user) {
+                    user.password = '...in progress of being set with changes...';
+                    user.save().then(() => {
+                        console.log('Password has been reset in db!');
+                        resolve(user);
+                    }).catch(fail => {
+                        console.log(fail);
+                        reject(fail);
+                    })
+                } else {
+                    reject(null);
+                }
+            }).catch((fail) => {
+                console.log(fail)
+                reject(fail)
+            })
+        })
+    },
+    resetPassByTokenDoubleProtection: function(token_, passwordHash) {
+        return new Promise((resolve, reject) => {
+            var query = User.findOne({
+                token: token_
+            });
+            query.select('token email login password');
+            query.exec().then((user) => {
+                if (user) {
+                    user.password = passwordHash;
+                    user.save().then(() => {
+                        console.log('Password has been reset in db!');
+                        resolve(user);
+                    }).catch(fail => {
+                        console.log(fail);
+                        reject(fail);
+                    })
+                } else {
+                    reject(null);
+                }
+            }).catch((fail) => {
+                console.log(fail)
+                reject(fail)
+            })
+        })
+    },
+    getUserByEmail: function(email) {
+        return new Promise((resolve, reject) => {
+            var query = User.findOne({
+                email: email
+            });
+            query.select('email email_confirms');
+            query.exec().then((user) => {
+                resolve(user);
             }).catch((fail) => {
                 console.log(fail)
                 reject(fail)
