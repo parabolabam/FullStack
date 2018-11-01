@@ -2,7 +2,7 @@
 
 const router = (require('koa-router'))();
 const parser = require('koa-bodyparser');
-const views = require('koa-views');
+// const views = require('koa-views');
 const db = require("../models/user_model.js");
 const jwt = require('jsonwebtoken');
 const mail = require('./mail.js');
@@ -33,7 +33,8 @@ router.post('/', async (ctx, next) => {
         const token = jwt.sign(user.email, "SEcretKeyNoOneWillNeverRealizeHoWTo+&*Generate#$@(#8@())")
 
         user.token = token
-        mail.send(user.email, "Follow the link below to confirm your Email address => " + `http://localhost/auth/${user.token}`);
+        mail.send(user.email, "Follow the link below to confirm your Email address => " +
+            `http://localhost:3001/auth/${user.token}`);
         await ctx.redirect("/signin")
         ctx.session.user = await user;
         await db.addUser(user)
@@ -78,32 +79,38 @@ router.post('/set_new_password/:token', async (ctx, next) => {
                 console.log("result ===>>>", result);
                 db.resetPassByTokenDoubleProtection(token, result).then((data) => {
                     console.log("DB process finished with data " + data);
+
                 }).catch((err) => {
                     console.log(err)
                 });
             });
         });
+        ctx.redirect('/signin');
     }
 
 
 })
 
 
-router.get('/reset/:token', async (ctx, next) => {
-
+router.post('/reset/:token', async (ctx, next) => {
+    console.log("kek");
     let token_url = ctx.originalUrl;
     let token = token_url.split('/')[2]; // parsed token_url
+    console.log(token);
     var ifSuccess = false;
-    await db.resetPassByToken(token).then(async (user_login) => {
-        await ctx.redirect('/set_new_password/' + token);
+    await db.resetPassByToken(token).then(() => {
+        ctx.redirect('/set_new_password/' + token);
     })
     // if (ifSuccess) ctx.redirect('/signin')
 })
 
 
 router.post('/resetpassword', async (ctx, next) => {
+    const email = ctx.request.body.email;
+    const token = jwt.sign(email, "SEcretKeyNoOneWillNeverRealizeHoWTo+&*Generate#$@(#8@())")
     mail.send(email, "Follow the link below to reset your password => " +
-        `http://localhost/reset/${token}`);
+        `http://localhost:3000/reset/${token}`);
+    ctx.body = "Check out your E-mail!";
 })
 
 
@@ -116,7 +123,7 @@ router.post('/signin', async (ctx, next) => {
     const resetPassword = ctx.request.body.resetPassword;
 
     if (resetPassword) {
-        console.log("IHIHHI");
+        ctx.redirect('/resetpassword');
         return;
     }
 
@@ -146,12 +153,16 @@ router.post('/signin', async (ctx, next) => {
         await ctx.redirect("/error")
     }
 });
+
+
 router.post('/home', async (ctx, next) => {
     console.log("GOT IT");
     console.log(`session of user ${ctx.session.user.login} destroyed!`);
     ctx.session = await null;
     await ctx.redirect('/signin');
 })
+
+
 router.get('/home', async (ctx, next) => {
     try {
 

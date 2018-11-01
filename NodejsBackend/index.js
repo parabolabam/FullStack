@@ -7,7 +7,6 @@ const parser = require('koa-bodyparser')
 const session = require("koa-session-minimal")
 const CONFIG = require("./CONFIG.js")
 
-
 const app = new Koa_2();
 
 app.use(session(CONFIG, app));
