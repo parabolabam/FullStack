@@ -7,7 +7,7 @@ import SigninForm from './components/SignInForm/SignInForm.jsx';
 import LogOutBtn from './components/LogoutBtn/LogoutBtn.jsx';
 import ResetPassword from './components/ResetPass';
 import SetNewPassword from './components/SetNewPassword';
-
+import Reset from './components/ResetPassOneClick';
 
 render(
 
@@ -17,5 +17,6 @@ render(
 		<Route  path="/home" component={Home}></Route>
 		<Route path="/logout" componenet={LogOutBtn}></Route>
 		<Route path='/resetPassword' component={ResetPassword}></Route>
+		<Route path='/reset/:token' component={Reset}></Route>
 		<Route path='/set_new_password' component={SetNewPassword}></Route>
 	</Router>, document.getElementById('root'));
